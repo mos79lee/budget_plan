@@ -2,32 +2,33 @@ const TIMELINE = [
   {
     year: "2026",
     label: "26년",
-    spend: 350,
+    spend: 300,
     events: [
       { name: "추석 모임", extra: "부부동반 · 인당 7.5만원", amount: 150 },
-      { name: "송년 모임", extra: "부부동반 · 인당 10만원", amount: 200 }
+      { name: "송년 모임", extra: "부부동반 · 인당 7.5만원", amount: 150 }
     ]
   },
   {
     year: "2027",
     label: "27년",
-    spend: 700,
+    spend: 800,
     events: [
       { name: "설 모임", extra: "인당 5만원", amount: 100 },
+      { name: "금값", extra: "2돈", amount: 150 },
       { name: "정기총회", extra: "", amount: 250 },
       { name: "추석 모임", extra: "부부동반 · 인당 7.5만원", amount: 150 },
-      { name: "송년 모임", extra: "부부동반 · 인당 10만원", amount: 200 }
+      { name: "송년 모임", extra: "부부동반 · 인당 7.5만원", amount: 150 }
     ]
   },
   {
     year: "2028",
     label: "28년",
-    spend: 700,
+    spend: 650,
     events: [
       { name: "설 모임", extra: "인당 5만원", amount: 100 },
       { name: "정기총회", extra: "", amount: 250 },
       { name: "추석 모임", extra: "부부동반 · 인당 7.5만원", amount: 150 },
-      { name: "송년 모임", extra: "부부동반 · 인당 10만원", amount: 200 }
+      { name: "송년 모임", extra: "부부동반 · 인당 7.5만원", amount: 150 }
     ]
   },
   {
@@ -43,15 +44,16 @@ const TIMELINE = [
 
 const CATEGORIES = [
   { name: "정기총회", value: 750, color: "#d4b45a" },
-  { name: "송년 모임", value: 600, color: "#c45c67" },
   { name: "추석 모임", value: 450, color: "#e0c07a" },
-  { name: "설 모임", value: 300, color: "#7d9b78" }
+  { name: "송년 모임", value: 450, color: "#c45c67" },
+  { name: "설 모임", value: 300, color: "#7d9b78" },
+  { name: "금값", value: 150, color: "#c47a3a" }
 ];
 
 const BARS = [
-  { year: "26", income: 756, spend: 350 },
-  { year: "27", income: 756, spend: 700 },
-  { year: "28", income: 756, spend: 700 },
+  { year: "26", income: 756, spend: 300 },
+  { year: "27", income: 756, spend: 800 },
+  { year: "28", income: 756, spend: 650 },
   { year: "29", income: 756, spend: 350 }
 ];
 
@@ -140,7 +142,7 @@ function drawDonut() {
 }
 
 function renderBars() {
-  const max = 756;
+  const max = Math.max(...BARS.flatMap((row) => [row.income, row.spend]));
   document.getElementById("bars").innerHTML = BARS.map(
     (row) => `
       <div class="bar-row">
